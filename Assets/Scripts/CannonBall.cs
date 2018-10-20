@@ -9,7 +9,7 @@ public class CannonBall : MonoBehaviour
 	private float leftWallBorder = -18f;
 	private float screenRightLimit = 20.06f;
 	private Vector2 velocity;
-	private float weight = 35;
+	private float weight = 9;
 	private Dictionary<int,float> mountainTops;
 	
 	// Use this for initialization
@@ -36,18 +36,22 @@ public class CannonBall : MonoBehaviour
 			gameObject.GetComponent<Rigidbody>().velocity = new Vector2(-(xSpeed*0.6f),gameObject.GetComponent<Rigidbody>().velocity.y);
 		}
 
-		if (mountainTops!= null && mountainTops.ContainsKey((int) xPosition) && yPosition < mountainTops[(int) xPosition] && ySpeed < 0)
+		int roundedXPosition = (int) Math.Round(xPosition);
+		
+		if (mountainTops!= null && mountainTops.ContainsKey(roundedXPosition) && yPosition < mountainTops[roundedXPosition])
 		{
 			if(Math.Abs(xSpeed) < 1 || Math.Abs(ySpeed) < 1)
 			{
 				Destroy(gameObject);
 			}
-			gameObject.GetComponent<Rigidbody>().velocity = new Vector2(-(xSpeed*0.6f),
-				-(ySpeed)*0.6f);
+			
+			transform.position = new Vector2(roundedXPosition, mountainTops[roundedXPosition]);
+			gameObject.GetComponent<Rigidbody>().velocity = new Vector2(-(xSpeed*0.5f),
+				-(ySpeed)*0.75f);
 		}
 		else
 		{
-			velocity += weight * Physics2D.gravity * Time.deltaTime;
+			velocity += weight * new Vector2(0,-5) * Time.deltaTime;
 			Vector2 deltaPosition = velocity * Time.deltaTime;
 			Vector2 v = gameObject.GetComponent<Rigidbody>().velocity;
 			gameObject.GetComponent<Rigidbody>().velocity =  v + deltaPosition;

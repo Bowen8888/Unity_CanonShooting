@@ -25,8 +25,9 @@ public class PerlinNoise
         while (chunkSize > 0)
         {
             int chunkIndex = x / chunkSize;
+            
             float prog = (x % chunkSize) / (chunkSize * 1f);
-            float left_random = random(chunkIndex, range);
+            float left_random = (chunkIndex == 0)? 0: random(chunkIndex, range);
             float right_random = random(chunkIndex + 1, range);
             noise += (1 - prog) * left_random + prog * right_random;
             chunkSize /= 2;
