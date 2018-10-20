@@ -27,7 +27,7 @@ public class CannonBall : MonoBehaviour
 		
 		if (transform.position.x < leftWallBorder && xSpeed < 0)
 		{
-			gameObject.GetComponent<Rigidbody>().velocity = new Vector2(-xSpeed,gameObject.GetComponent<Rigidbody>().velocity.y);
+			gameObject.GetComponent<Rigidbody>().velocity = new Vector2(-(xSpeed*0.6f),gameObject.GetComponent<Rigidbody>().velocity.y);
 		}
 
 		velocity += weight * Physics2D.gravity * Time.deltaTime;
