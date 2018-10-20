@@ -9,6 +9,7 @@ public class CannonShoot : MonoBehaviour
 	public GameObject cannonBall;
 
 	public float firePower;
+	private float rotationAngle = 0;
 	
 	// Use this for initialization
 	void Start () {
@@ -41,12 +42,14 @@ public class CannonShoot : MonoBehaviour
 
 	public void MoveCannon(bool up)
 	{
-		if (up)
+		if (up && rotationAngle < 90)
 		{
+			rotationAngle += 10;
 			transform.parent.transform.Rotate(0,0,10f);
 		}
-		else
+		if (!up && rotationAngle > 0)
 		{
+			rotationAngle -= 10;
 			transform.parent.transform.Rotate(0,0,-10f);
 		}
 	}
