@@ -8,10 +8,10 @@ public class MountainGenerator : MonoBehaviour
 	public GameObject dirtPrefab;
 	public GameObject grassPrefab;
 
-	private int minX = 94;
-	private int maxX = 146;
-	private int minY = 26;
-	private int maxY = 82;
+	private int minX = -30;
+	private int maxX = 30;
+	private int minY = -30;
+	private int maxY = 30;
 
 	private PerlinNoise noise;
 	
