@@ -439,7 +439,7 @@ Prefab:
     - target: {fileID: 212000011531008898, guid: f9964a1c18ef34888964d06731d86702,
         type: 2}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1000012060770246, guid: f9964a1c18ef34888964d06731d86702, type: 2}
       propertyPath: m_Name
