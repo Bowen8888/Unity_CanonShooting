@@ -6,7 +6,7 @@ using UnityEngine;
 public class WindGenerator : MonoBehaviour
 {
 
-	private int[] windMagnitudes = new int[]{-20,-15,-10,-5,0,5,10,15,20};
+	private int[] windMagnitudes = new int[]{-5,-4,-3,-2,-1,0,1,2,3,4,5};
 	public int currentWind = 0;
 	
 	private float time = 0.0f;
