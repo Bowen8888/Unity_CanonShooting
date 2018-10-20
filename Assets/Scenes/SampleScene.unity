@@ -400,7 +400,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000012060770246, guid: f9964a1c18ef34888964d06731d86702, type: 2}
       propertyPath: m_Name
-      value: ground
+      value: Ground
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9964a1c18ef34888964d06731d86702, type: 2}
@@ -417,7 +417,7 @@ GameObject:
   - component: {fileID: 1992247920}
   - component: {fileID: 1992247919}
   m_Layer: 0
-  m_Name: cloud
+  m_Name: Cloud
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -519,7 +519,7 @@ GameObject:
   - component: {fileID: 2105363108}
   - component: {fileID: 2105363107}
   m_Layer: 0
-  m_Name: sky
+  m_Name: Sky
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
