@@ -51,8 +51,11 @@ public class CannonBall : MonoBehaviour
 			{
 				Destroy(gameObject);
 			}
-			
-			transform.position = new Vector2(roundedXPosition, mountainTops[roundedXPosition]);
+
+			if (ySpeed < 0)
+			{
+				transform.position = new Vector2(roundedXPosition, mountainTops[roundedXPosition]);
+			}
 			gameObject.GetComponent<Rigidbody>().velocity = new Vector2(-(xSpeed*0.5f),
 				-(ySpeed)*0.75f);
 		}

@@ -183,7 +183,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5232d8c62bef6a7489edcf7e7141f34d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentWind: 0
   interpolationPeriod: 0.5
 --- !u!4 &250360385
 Transform:
@@ -793,7 +792,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7afa0a0c32d737a42b228108964b3c4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  windController: {fileID: 250360383}
 --- !u!54 &1992247920
 Rigidbody:
   m_ObjectHideFlags: 0

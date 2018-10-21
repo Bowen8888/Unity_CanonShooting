@@ -10,10 +10,10 @@ public class MountainGenerator : MonoBehaviour
 	public GameObject dirtPrefab;
 	public GameObject grassPrefab;
 
-	private int minX = -30;
-	private int maxX = 30;
-	private int minY = -30;
-	private int maxY = 30;
+	private int minX = -90;
+	private int maxX = 85;
+	private int minY = -90;
+	private int maxY = 90;
 
 	private PerlinNoise noise;
 	
@@ -37,7 +37,7 @@ public class MountainGenerator : MonoBehaviour
 		
 		for (int i = minX; i < maxX; i++)
 		{
-			int columnHeight = 2 + noise.getNoise(i - minX, maxY - minY - 2);
+			int columnHeight = 2 + noise.getNoise(i - minX, maxY - minY - 2, Math.Abs(minX)+Math.Abs(maxX)-1);
 			for (int j = minY; j < columnHeight + minY; j++)
 			{
 				GameObject block = (j == minY + columnHeight - 1) ? grassPrefab : dirtPrefab;

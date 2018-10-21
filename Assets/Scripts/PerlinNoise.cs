@@ -16,7 +16,7 @@ public class PerlinNoise
         return (int) (((x + seed) ^ 5) % range);
     }
 
-    public int getNoise(int x, int range)
+    public int getNoise(int x, int range, int totalSize)
     {
         int chunkSize = 16;
         float noise = 0;
@@ -28,7 +28,7 @@ public class PerlinNoise
             
             float prog = (x % chunkSize) / (chunkSize * 1f);
             float left_random = (chunkIndex == 0)? 0: random(chunkIndex, range);
-            float right_random = random(chunkIndex + 1, range);
+            float right_random = (chunkIndex == totalSize/chunkSize) ?0: random(chunkIndex + 1, range);
             noise += (1 - prog) * left_random + prog * right_random;
             chunkSize /= 2;
             range /= 2;
