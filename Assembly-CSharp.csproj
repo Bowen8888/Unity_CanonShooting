@@ -61,6 +61,7 @@
     <Compile Include="Assets\Scripts\LineController.cs" />
     <Compile Include="Assets\Scripts\MountainGenerator.cs" />
     <Compile Include="Assets\Scripts\PerlinNoise.cs" />
+    <Compile Include="Assets\Scripts\Wind.cs" />
     <Compile Include="Assets\Scripts\WindGenerator.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/36969/git/Comp521Assignment2/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>

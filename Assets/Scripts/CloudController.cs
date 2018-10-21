@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class CloudController : MonoBehaviour
 {
-	public GameObject windController;
-
 	// Use this for initialization
 	void Start () {
 	}
@@ -13,7 +11,7 @@ public class CloudController : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		int wind = windController.GetComponent<WindGenerator>().currentWind;
+		int wind = Wind.currentWind;
 		Vector2 movingVector = new Vector2(wind,0);
 		gameObject.GetComponent<Rigidbody>().velocity =  movingVector;
 	}

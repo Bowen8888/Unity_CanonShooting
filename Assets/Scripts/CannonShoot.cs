@@ -40,6 +40,7 @@ public class CannonShoot : MonoBehaviour
 		GameObject thisCannonBall = Instantiate(cannonBall, transform.position, transform.rotation);
 		thisCannonBall.GetComponent<Rigidbody>().AddRelativeForce(firePower,0,0, ForceMode.Impulse);
 		thisCannonBall.GetComponent<CannonBall>().SetMountainTops(mountainGenerator.GetComponent<MountainGenerator>().GetMountainTops());
+		thisCannonBall.GetComponent<CannonBall>().SetMountainTop(mountainGenerator.GetComponent<MountainGenerator>().GetMountainTop());
 	}
 
 	public void MoveCannon(bool up)

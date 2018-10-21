@@ -18,11 +18,13 @@ public class MountainGenerator : MonoBehaviour
 	private PerlinNoise noise;
 	
 	private Dictionary<int,float> mountainTops;
+	private float mountainTop;
 	
 	// Use this for initialization
 	void Start () {
 		noise = new PerlinNoise(Random.Range(1000000,10000000));
 		mountainTops = new Dictionary<int, float>();
+		mountainTop = minY;
 		Regenerate();
 		
 	}
@@ -44,7 +46,9 @@ public class MountainGenerator : MonoBehaviour
 				
 				if (j == minY + columnHeight - 1)
 				{
-					mountainTops[(int)cell.transform.position.x] = cell.transform.position.y+ 0.5f;
+					float yCoord = cell.transform.position.y + 0.5f;
+					mountainTops[(int)cell.transform.position.x] = yCoord;
+					mountainTop = Math.Max(mountainTop, yCoord);
 				}
 			}
 		}
@@ -58,5 +62,10 @@ public class MountainGenerator : MonoBehaviour
 	public Dictionary<int,float> GetMountainTops()
 	{
 		return new Dictionary<int, float>(mountainTops);
+	}
+
+	public float GetMountainTop()
+	{
+		return mountainTop;
 	}
 }

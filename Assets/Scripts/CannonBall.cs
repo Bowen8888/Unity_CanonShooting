@@ -11,6 +11,7 @@ public class CannonBall : MonoBehaviour
 	private Vector2 velocity;
 	private float weight = 9;
 	private Dictionary<int,float> mountainTops;
+	private float mountainTop;
 	
 	// Use this for initialization
 	void Start ()
@@ -24,9 +25,15 @@ public class CannonBall : MonoBehaviour
 		float xPosition = transform.position.x;
 		float yPosition = transform.position.y;
 		float xSpeed = gameObject.GetComponent<Rigidbody>().velocity.x;
+		Vector2 actingForce = new Vector2(0,-5);
 		if ( yPosition< groundHeight || xPosition > screenRightLimit)
 		{
 			Destroy(gameObject);
+		}
+
+		if (mountainTop != null && yPosition > mountainTop)
+		{
+			actingForce = new Vector2(Wind.currentWind*0.5f,-5);
 		}
 		
 		float ySpeed = gameObject.GetComponent<Rigidbody>().velocity.y;
@@ -51,7 +58,7 @@ public class CannonBall : MonoBehaviour
 		}
 		else
 		{
-			velocity += weight * new Vector2(0,-5) * Time.deltaTime;
+			velocity += weight * actingForce * Time.deltaTime;
 			Vector2 deltaPosition = velocity * Time.deltaTime;
 			Vector2 v = gameObject.GetComponent<Rigidbody>().velocity;
 			gameObject.GetComponent<Rigidbody>().velocity =  v + deltaPosition;
@@ -62,5 +69,10 @@ public class CannonBall : MonoBehaviour
 	public void SetMountainTops(Dictionary<int,float> dictionary)
 	{
 		mountainTops = dictionary;
+	}
+
+	public void SetMountainTop(float mountainTop)
+	{
+		this.mountainTop = mountainTop;
 	}
 }
