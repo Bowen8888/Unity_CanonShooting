@@ -58,6 +58,7 @@
     <Compile Include="Assets\Scripts\CannonBall.cs" />
     <Compile Include="Assets\Scripts\CannonShoot.cs" />
     <Compile Include="Assets\Scripts\CloudController.cs" />
+    <Compile Include="Assets\Scripts\LineController.cs" />
     <Compile Include="Assets\Scripts\MountainGenerator.cs" />
     <Compile Include="Assets\Scripts\PerlinNoise.cs" />
     <Compile Include="Assets\Scripts\WindGenerator.cs" />
