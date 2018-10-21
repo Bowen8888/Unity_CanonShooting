@@ -52,7 +52,7 @@ public class CannonBall : MonoBehaviour
 				Destroy(gameObject);
 			}
 
-			if (ySpeed < 0)
+			if (ySpeed < 0 && Math.Abs(yPosition-mountainTops[roundedXPosition]) < 1)
 			{
 				transform.position = new Vector2(roundedXPosition, mountainTops[roundedXPosition]);
 			}
