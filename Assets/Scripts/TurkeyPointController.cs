@@ -21,6 +21,10 @@ public class TurkeyPointController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (Input.GetKeyDown(KeyCode.J))
+		{
+			_turkey.TurkeyJump();
+		}
 		_turkey.UpdateTurkey();
 		RenderPoints();
 	}

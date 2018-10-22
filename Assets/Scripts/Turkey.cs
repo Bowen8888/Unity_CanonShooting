@@ -6,26 +6,19 @@ using UnityEngine;
 public class Turkey {
     public List<Point> Points;
     private float gravity = -0.005f;
+    private float jumpForce = 0.6f;
     private float ground = -24.97f;
     private float bounce = 0.6f;
 
     public Turkey(List<Point> points)
     {
         Points = points;
-        for (int i=0; i< points.Count; i++)
+        for (int i=0; i< points.Count-1; i++)
         {
-            if (i == points.Count-1)
-            {
-                Points[i].next = Points[0];
-            }
-            else
-            {
-                Points[i].next = Points[i + 1];
-            }
+            Points[i].next = Points[i + 1];
             Points[i].xDistanceToNext = Points[i].next.x - Points[i].x;
             Points[i].yDistanceToNext = Points[i].next.y - Points[i].y;
         }
-        Debug.Log("");
     }
 
     public void UpdateTurkey()
@@ -67,21 +60,20 @@ public class Turkey {
     
     public void UpdateSticks()
     {
+        for(int i =Points.Count-2; i>=0; i--)
+        {
+            Points[i].UpdateStick();
+        }
+    }
+
+    public void TurkeyJump()
+    {
         foreach (var p in Points)
         {
-            /*float dx = s.p1.x - s.p0.x;
-            float dy = s.p1.y - s.p0.y;
-            float distance = (float) Math.Sqrt(dx * dx + dy * dy);
-            float difference = s.length - distance;
-            float percent = difference / distance / 2;
-            float offsetX = dx * percent;
-            float offsetY = dy * percent;
-
-            s.p0.x -= offsetX;
-            s.p0.y -= offsetY;
-            s.p1.x += offsetX;
-            s.p1.y += offsetY;*/
-            p.UpdateStick();
+            float vy = p.y - p.oldY;
+            p.oldY = p.y;
+            p.y += vy;
+            p.y += jumpForce;
         }
     }
 }
@@ -110,7 +102,9 @@ public class Point
         float dy = next.y - y;
         float offSetX = xDistanceToNext - dx;
         float offSetY = yDistanceToNext - dy;
-        x -= offSetX;
-        y -= offSetY;
+        x -= offSetX/2;
+        y -= offSetY/2;
+        next.x += offSetX / 2;
+        next.y += offSetY / 2;
     }
 }
