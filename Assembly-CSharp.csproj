@@ -61,6 +61,8 @@
     <Compile Include="Assets\Scripts\LineController.cs" />
     <Compile Include="Assets\Scripts\MountainGenerator.cs" />
     <Compile Include="Assets\Scripts\PerlinNoise.cs" />
+    <Compile Include="Assets\Scripts\Turkey.cs" />
+    <Compile Include="Assets\Scripts\TurkeyPointController.cs" />
     <Compile Include="Assets\Scripts\Wind.cs" />
     <Compile Include="Assets\Scripts\WindGenerator.cs" />
     <Reference Include="UnityEditor.StandardEvents">
