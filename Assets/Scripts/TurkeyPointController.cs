@@ -21,12 +21,13 @@ public class TurkeyPointController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown(KeyCode.J))
+		if (_turkey.grounded && Input.GetKeyDown(KeyCode.J))
 		{
 			_turkey.TurkeyJump();
 		}
 		_turkey.UpdateTurkey();
 		RenderPoints();
+		RenderLines();
 	}
 
 	private void RenderPoints()
@@ -35,6 +36,14 @@ public class TurkeyPointController : MonoBehaviour {
 		{
 			TurkeyPoints[i].transform.localPosition = new Vector3(_turkey.Points[i].x,_turkey.Points[i].y,-0.01f);
 		}
+	}
+
+	private void RenderLines()
+	{
+		foreach (var lineController in transform.GetComponentsInChildren<LineController>())
+		{
+			lineController.DrawLine();	
+		}		
 	}
 
 

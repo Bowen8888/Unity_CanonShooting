@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Turkey {
     public List<Point> Points;
+    public bool grounded = true;
+    
     private float gravity = -0.005f;
     private float jumpForce = 0.6f;
     private float ground = -24.97f;
@@ -52,6 +54,7 @@ public class Turkey {
 
             if (p.y < ground)
             {
+                grounded = true;
                 p.y = ground;
                 p.oldY = p.y + vy * bounce;
             }
@@ -68,6 +71,7 @@ public class Turkey {
 
     public void TurkeyJump()
     {
+        grounded = false;
         foreach (var p in Points)
         {
             float vy = p.y - p.oldY;

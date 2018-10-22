@@ -9,14 +9,16 @@ public class LineController : MonoBehaviour
 	
 	// Use this for initialization
 	void Start () {
-		
+		_lineRenderer = GetComponent<LineRenderer>();
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
-		//draw line
-		_lineRenderer = GetComponent<LineRenderer>();
+	}
+
+	public void DrawLine()
+	{
 		Vector3[] vector3s = new Vector3[]{transform.position,end.transform.position};
 		_lineRenderer.SetPositions(vector3s);
 	}
