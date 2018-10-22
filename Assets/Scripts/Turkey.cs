@@ -6,11 +6,18 @@ using UnityEngine;
 public class Turkey {
     public List<Point> Points;
     public bool grounded = true;
+    public float minX;
+    public float maxX;
+    public float minY;
+    public float maxY;
     
-    private float gravity = -0.005f;
-    private float jumpForce = 0.6f;
-    private float ground = -24.97f;
+    private float gravity = -0.01f;
+    private float jumpForce = 0.5f;
+    private float walkForce = 0.1f;
+    private float ground = -7.9f;
     private float bounce = 0.6f;
+    private float leftWall = -18.26f;
+    private float mountainLeftBorder = -8.62f;
 
     public Turkey(List<Point> points)
     {
@@ -21,6 +28,7 @@ public class Turkey {
             Points[i].xDistanceToNext = Points[i].next.x - Points[i].x;
             Points[i].yDistanceToNext = Points[i].next.y - Points[i].y;
         }
+        UpdateBorders();
     }
 
     public void UpdateTurkey()
@@ -28,6 +36,7 @@ public class Turkey {
         UpdatePoints();
         ConstrainPoints();
         UpdateSticks();
+        UpdateBorders();
     }
 
     public void UpdatePoints()
@@ -44,6 +53,26 @@ public class Turkey {
         }
     }
 
+    public void UpdateBorders()
+    {
+        for (int i=0; i<Points.Count; i++)
+        {
+            Point p = Points[i];
+            if (i == 0)
+            {
+                minX = maxX = p.x;
+                minY = maxY = p.y;
+            }
+            else
+            {
+                minX = Math.Min(minX, p.x);
+                maxX = Math.Max(maxX, p.x);
+                minY = Math.Min(minY, p.y);
+                maxY = Math.Max(maxY, p.y);
+            }
+        }
+    }
+
     public void ConstrainPoints()
     {
         for (int i=0; i< Points.Count; i++)
@@ -57,6 +86,18 @@ public class Turkey {
                 grounded = true;
                 p.y = ground;
                 p.oldY = p.y + vy * bounce;
+            }
+
+            if (p.x < leftWall)
+            {
+                p.x = leftWall;
+                p.oldX = p.x + vx;
+            }
+
+            if (p.x > mountainLeftBorder)
+            {
+                p.x = mountainLeftBorder;
+                p.oldX = p.x + vx;
             }
         }
     }
@@ -78,6 +119,24 @@ public class Turkey {
             p.oldY = p.y;
             p.y += vy;
             p.y += jumpForce;
+        }
+    }
+
+    public void LateralSlide(bool right)
+    {
+        foreach (var p in Points)
+        {
+            float vx = p.x - p.oldX;
+            p.oldX = p.x;
+            p.x += vx;
+            if (right)
+            {
+                p.x += walkForce;
+            }
+            else
+            {
+                p.x -= walkForce;
+            }
         }
     }
 }
