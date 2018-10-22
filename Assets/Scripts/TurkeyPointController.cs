@@ -20,7 +20,7 @@ public class TurkeyPointController : MonoBehaviour {
 			points.Add(new Point(xPosition,yPosition));
 		}
 		_turkey = new Turkey(points);
-		TurkeyLateralMove();
+		//TurkeyLateralMove();
 	}
 	
 	// Update is called once per frame
@@ -33,7 +33,16 @@ public class TurkeyPointController : MonoBehaviour {
 		RenderPoints();
 		RenderLines();
 		time += Time.deltaTime;
- 
+
+		if (Input.GetKeyDown(KeyCode.A))
+		{
+			_turkey.LateralSlide(false);
+		}
+		if (Input.GetKeyDown(KeyCode.D))
+		{
+			_turkey.LateralSlide(true);
+		}
+		CannonBallCollisionDetection();
 		if (time >= interpolationPeriod) {
 			time = 0.0f;
 			if (_turkey.grounded)
@@ -65,5 +74,31 @@ public class TurkeyPointController : MonoBehaviour {
 		}		
 	}
 
+	private void CannonBallCollisionDetection()
+	{
+		GameObject[] cannonBalls = GameObject.FindGameObjectsWithTag("CannonBall");
 
+		for (int i=0; i<cannonBalls.Length; i++)
+		{
+			Vector2 ballCoord = cannonBalls[i].transform.position;
+			for (int j=0; j< TurkeyPoints.Count; j++)
+			{
+				Vector2 turkeyCoord = TurkeyPoints[j].transform.position;
+				if (distance(ballCoord,turkeyCoord) < 0.5)
+				{
+					Vector2 ballVelocity = cannonBalls[i].GetComponent<Rigidbody>().velocity*0.01f;
+					_turkey.VertexSlide(j,ballVelocity.x,ballVelocity.y);
+					Destroy(cannonBalls[i]);
+					break;
+				}
+			}
+		}
+	}
+
+	private float distance(Vector2 p0, Vector2 p1)
+	{
+		float dx = p1.x - p0.x;
+		float dy = p1.y - p0.y;
+		return (float) Math.Sqrt(dx * dx + dy * dy);
+	}
 }
