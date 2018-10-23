@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class TurkeyPointController : MonoBehaviour {
@@ -8,6 +9,7 @@ public class TurkeyPointController : MonoBehaviour {
 	Turkey _turkey ;
 	private float time = 0.0f;
 	public float interpolationPeriod = 5f;
+	public GameObject mountainGenerator;
 
 	public List<GameObject> TurkeyPoints = new List<GameObject>();
 	// Use this for initialization
@@ -50,6 +52,16 @@ public class TurkeyPointController : MonoBehaviour {
 				TurkeyLateralMove();
 			}
 		}
+
+		if (_turkey.minY > MountainGenerator.GetMountainTop())
+		{
+			int wind = Wind.currentWind;
+			if (wind != 0)
+			{
+				_turkey.WindBlow(wind>0);
+			}
+		}
+		MountainCollisionDetection();
 	}
 
 	private void TurkeyLateralMove()
@@ -86,12 +98,25 @@ public class TurkeyPointController : MonoBehaviour {
 				Vector2 turkeyCoord = TurkeyPoints[j].transform.position;
 				if (distance(ballCoord,turkeyCoord) < 0.5)
 				{
-					Vector2 ballVelocity = cannonBalls[i].GetComponent<Rigidbody>().velocity*0.01f;
+					Vector2 ballVelocity = cannonBalls[i].GetComponent<Rigidbody>().velocity*0.05f;
 					_turkey.VertexSlide(j,ballVelocity.x,ballVelocity.y);
 					Destroy(cannonBalls[i]);
 					break;
 				}
 			}
+		}
+	}
+
+	private void MountainCollisionDetection()
+	{
+		Dictionary<int, float> mountainTops = MountainGenerator.GetMountainTops();
+
+		float xPosition = (_turkey.minX + _turkey.maxX) / 2;
+		float yPosition = (_turkey.minY + _turkey.maxY) / 2;
+		int roundedXPosition = (int) Math.Round(xPosition);
+		if (mountainTops.Keys.Contains(roundedXPosition) && yPosition < mountainTops[roundedXPosition])
+		{
+			_turkey.MountainBouncing();
 		}
 	}
 

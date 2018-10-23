@@ -13,12 +13,12 @@ public class MountainGenerator : MonoBehaviour
 	private int minX = -90;
 	private int maxX = 85;
 	private int minY = -90;
-	private int maxY = 90;
+	private int maxY = 300;
 
 	private PerlinNoise noise;
 	
-	private Dictionary<int,float> mountainTops;
-	private float mountainTop;
+	private static Dictionary<int,float> mountainTops;
+	private static float mountainTop;
 	
 	// Use this for initialization
 	void Start () {
@@ -43,7 +43,6 @@ public class MountainGenerator : MonoBehaviour
 				GameObject block = (j == minY + columnHeight - 1) ? grassPrefab : dirtPrefab;
 				
 				GameObject cell = Instantiate(block, new Vector2(i * width, j * height), Quaternion.identity);
-				
 				if (j == minY + columnHeight - 1)
 				{
 					float yCoord = cell.transform.position.y + 0.5f;
@@ -56,15 +55,23 @@ public class MountainGenerator : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if (Input.GetKeyDown(KeyCode.R))
+		{
+			GameObject[] cells = GameObject.FindGameObjectsWithTag("Cell");
+			for (int i=0; i< cells.Length;i++)
+			{
+				Destroy(cells[i]);
+			}
+			Regenerate();
+		}
 	}
 
-	public Dictionary<int,float> GetMountainTops()
+	public static Dictionary<int,float> GetMountainTops()
 	{
 		return new Dictionary<int, float>(mountainTops);
 	}
 
-	public float GetMountainTop()
+	public static float GetMountainTop()
 	{
 		return mountainTop;
 	}

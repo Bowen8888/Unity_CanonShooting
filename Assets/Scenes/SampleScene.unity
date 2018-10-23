@@ -358,7 +358,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4409204542612298, guid: 4ff9ecc4d8adcaa4b837fbd3d999c7e1, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -15.6
+      value: -12.88
       objectReference: {fileID: 0}
     - target: {fileID: 4409204542612298, guid: 4ff9ecc4d8adcaa4b837fbd3d999c7e1, type: 2}
       propertyPath: m_LocalPosition.y
@@ -388,22 +388,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
-    - target: {fileID: 4937909002923730, guid: 4ff9ecc4d8adcaa4b837fbd3d999c7e1, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -0.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 4937909002923730, guid: 4ff9ecc4d8adcaa4b837fbd3d999c7e1, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 2.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 23656428305245388, guid: 4ff9ecc4d8adcaa4b837fbd3d999c7e1,
+    - target: {fileID: 114135906981630274, guid: 4ff9ecc4d8adcaa4b837fbd3d999c7e1,
         type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 120373804332476216, guid: 4ff9ecc4d8adcaa4b837fbd3d999c7e1, type: 2}
-    - {fileID: 114365449275863656, guid: 4ff9ecc4d8adcaa4b837fbd3d999c7e1, type: 2}
+      propertyPath: mountainGenerator
+      value: 
+      objectReference: {fileID: 889888725}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ff9ecc4d8adcaa4b837fbd3d999c7e1, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &889888725

@@ -13,12 +13,14 @@ public class Turkey {
     public float maxY;
     
     private float gravity = -0.05f;
-    private float jumpForce = 0.2f;
+    private float jumpForce = 0.4f;
     private float walkForce = 0.1f;
+    private float windOffset = 0.05f;
     private float ground = -7.9f;
     private float bounce = 0.6f;
-    private float leftWall = -18.26f;
-    private float mountainLeftBorder = -8.62f;
+    private float leftWall = -18.912f;
+    private float mountainLeftBorder = -8.944f;
+    private float mountainSlideForce = 0.03f;
 
     public Turkey(List<Point> points)
     {
@@ -217,11 +219,11 @@ public class Turkey {
                 p.oldX = p.x + vx;
             }
 
-            if (p.x > mountainLeftBorder)
-            {
-                p.x = mountainLeftBorder;
-                p.oldX = p.x + vx;
-            }
+//            if (p.x > mountainLeftBorder)
+//            {
+//                p.x = mountainLeftBorder;
+//                p.oldX = p.x + vx;
+//            }
         }
     }
     
@@ -278,6 +280,33 @@ public class Turkey {
             else
             {
                 p.x -= walkForce;
+            }
+        }
+    }
+
+    public void WindBlow(bool right)
+    {
+//        foreach (var p in Points)
+//        {
+//            p.oldX = p.x;
+//            p.x += (right) ? windOffset : -windOffset;
+//        }
+        Point p = Points[17];
+        p.oldX = p.x;
+        p.x += (right) ? windOffset : -windOffset;
+    }
+    
+    public void MountainBouncing()
+    {
+        for (int i =0; i< Points.Count;i++)
+        {
+            if (i % 3 == 0)
+            {
+                Point p = Points[i];
+                p.oldX = p.x;
+                p.x -= mountainSlideForce;
+                p.oldY = p.y;
+                p.y += mountainSlideForce;
             }
         }
     }

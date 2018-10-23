@@ -18,7 +18,7 @@ public class PerlinNoise
 
     public int getNoise(int x, int range, int totalSize)
     {
-        int chunkSize = 16;
+        int chunkSize = 176;
         float noise = 0;
         range /= 2;
 
