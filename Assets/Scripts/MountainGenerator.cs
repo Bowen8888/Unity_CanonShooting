@@ -13,7 +13,7 @@ public class MountainGenerator : MonoBehaviour
 	private int minX = -90;
 	private int maxX = 85;
 	private int minY = -90;
-	private int maxY = 300;
+	private int maxY = 150;
 
 	private PerlinNoise noise;
 	
