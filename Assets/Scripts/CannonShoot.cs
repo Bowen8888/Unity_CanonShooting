@@ -7,7 +7,6 @@ public class CannonShoot : MonoBehaviour
 {
 
 	public GameObject cannonBall;
-	public GameObject mountainGenerator;
 
 	public float firePower;
 	private float rotationAngle = 0;

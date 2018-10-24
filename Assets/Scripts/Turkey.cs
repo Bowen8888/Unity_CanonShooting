@@ -222,24 +222,11 @@ public class Turkey {
                 p.x = leftWall;
                 p.oldX = p.x + vx;
             }
-
-//            if (p.x > mountainLeftBorder)
-//            {
-//                p.x = mountainLeftBorder;
-//                p.oldX = p.x + vx;
-//            }
         }
     }
     
     public void UpdateSticks()
     {
-/*        for(int i =Points.Count-2; i>=0; i--)
-        {
-            Points[i].UpdateStick();
-        }*/
-        
-        //Use one or the other
-
         for (int i = 0; i < Sticks.Count; i++)
         {
             Stick s = Sticks[i];
@@ -287,18 +274,6 @@ public class Turkey {
             }
         }
     }
-
-//    public void WindBlow(bool right)
-//    {
-////        foreach (var p in Points)
-////        {
-////            p.oldX = p.x;
-////            p.x += (right) ? windOffset : -windOffset;
-////        }
-//        Point p = Points[17];
-//        p.oldX = p.x;
-//        p.x += (right) ? windOffset : -windOffset;
-//    }
     
     public void MountainBouncing()
     {

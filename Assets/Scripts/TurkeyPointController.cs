@@ -9,7 +9,6 @@ public class TurkeyPointController : MonoBehaviour {
 	Turkey _turkey ;
 	private float time = 0.0f;
 	public float interpolationPeriod = 5f;
-	public GameObject mountainGenerator;
 
 	public List<GameObject> TurkeyPoints = new List<GameObject>();
 	// Use this for initialization
@@ -67,15 +66,6 @@ public class TurkeyPointController : MonoBehaviour {
 				//TurkeyLateralMove();
 			}
 		}
-
-//		if (_turkey.minY > MountainGenerator.GetMountainTop())
-//		{
-//			int wind = Wind.currentWind;
-//			if (wind != 0)
-//			{
-//				_turkey.WindBlow(wind>0);
-//			}
-//		}
 		MountainCollisionDetection();
 	}
 
