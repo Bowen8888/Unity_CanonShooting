@@ -15,15 +15,16 @@ public class TurkeyPointController : MonoBehaviour {
 	public List<GameObject> TurkeyPoints = new List<GameObject>();
 	// Use this for initialization
 	void Start () {
+		System.Random rnd = new System.Random();
 		List<Point> points = new List<Point>();
+		float offset = (float) (rnd.NextDouble() * 5);
 		foreach (var obj in TurkeyPoints)
 		{
 			float xPosition = obj.transform.position.x;
 			float yPosition = obj.transform.position.y;
-			points.Add(new Point(xPosition,yPosition));
+			points.Add(new Point(xPosition-offset,yPosition));
 		}
 		_turkey = new Turkey(points);
-		System.Random rnd = new System.Random();
 		jumpPeriod = (float) (rnd.NextDouble()* 5f+5);
 		TurkeyLateralMove((float) rnd.NextDouble());
 	}
@@ -55,12 +56,12 @@ public class TurkeyPointController : MonoBehaviour {
 		float wf = 0;
 		if (_turkey.maxX > -8.77)
 		{
-			wf = -0.005f;
+			wf = -0.008f;
 		}
 
 		if (_turkey.minY > MountainGenerator.GetMountainTop())
 		{
-			_turkey.UpdateTurkey(Wind.currentWind*0.05f,wf);
+			_turkey.UpdateTurkey(Wind.currentWind*0.02f,wf);
 		}
 		else
 		{
