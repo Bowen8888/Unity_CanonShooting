@@ -26,12 +26,12 @@ public class TurkeyPointController : MonoBehaviour {
 		}
 		_turkey = new Turkey(points);
 		jumpPeriod = (float) (rnd.NextDouble()* 5f+5);
-		TurkeyLateralMove((float) rnd.NextDouble());
+		TurkeyLateralMove();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (_turkey.minX > 20)
+		if (_turkey.minX > 8.04)
 		{
 			Destroy(gameObject);
 			TurkeyFactory.DecrementTurkeyAmount();
@@ -75,18 +75,18 @@ public class TurkeyPointController : MonoBehaviour {
 		CannonBallCollisionDetection();
 		if (time >= interpolationPeriod) {
 			time = 0.0f;
-			if (_turkey.grounded)
+			if (_turkey.grounded && _turkey.maxX < -8.77)
 			{
-				TurkeyLateralMove(1);
+				TurkeyLateralMove();
 			}
 		}
 		MountainCollisionDetection();
 	}
 
-	private void TurkeyLateralMove(float coeff)
+	private void TurkeyLateralMove()
 	{
 		System.Random rnd = new System.Random();
-		_turkey.LateralSlide(rnd.NextDouble() < 0.5, coeff);
+		_turkey.LateralSlide(rnd.NextDouble() < 0.5);
 	}
 
 	private void RenderPoints()

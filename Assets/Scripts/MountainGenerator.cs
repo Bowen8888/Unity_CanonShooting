@@ -13,7 +13,7 @@ public class MountainGenerator : MonoBehaviour
 	private int minX = -90;
 	private int maxX = 85;
 	private int minY = -90;
-	private int maxY = 140;
+	private int maxY = 135;
 
 	private PerlinNoise noise;
 	
@@ -55,15 +55,6 @@ public class MountainGenerator : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown(KeyCode.R))
-		{
-			GameObject[] cells = GameObject.FindGameObjectsWithTag("Cell");
-			for (int i=0; i< cells.Length;i++)
-			{
-				Destroy(cells[i]);
-			}
-			Regenerate();
-		}
 	}
 
 	public static Dictionary<int,float> GetMountainTops()

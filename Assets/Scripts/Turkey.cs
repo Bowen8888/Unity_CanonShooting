@@ -276,7 +276,7 @@ public class Turkey {
         }
     }
 
-    public void LateralSlide(bool right, float coeff)
+    public void LateralSlide(bool right)
     {
         foreach (var p in Points)
         {
@@ -285,11 +285,11 @@ public class Turkey {
             p.x += vx;
             if (right)
             {
-                p.x += walkForce*coeff;
+                p.x += walkForce;
             }
             else
             {
-                p.x -= walkForce*coeff;
+                p.x -= walkForce;
             }
         }
     }
