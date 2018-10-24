@@ -8,7 +8,9 @@ public class TurkeyPointController : MonoBehaviour {
 
 	Turkey _turkey ;
 	private float time = 0.0f;
-	public float interpolationPeriod = 5f;
+	private float interpolationPeriod = 3f;
+	private float jumpTimer = 0.0f;
+	private float jumpPeriod;
 
 	public List<GameObject> TurkeyPoints = new List<GameObject>();
 	// Use this for initialization
@@ -21,7 +23,9 @@ public class TurkeyPointController : MonoBehaviour {
 			points.Add(new Point(xPosition,yPosition));
 		}
 		_turkey = new Turkey(points);
-		//TurkeyLateralMove();
+		System.Random rnd = new System.Random();
+		jumpPeriod = (float) (rnd.NextDouble()* 5f+5);
+		TurkeyLateralMove((float) rnd.NextDouble());
 	}
 	
 	// Update is called once per frame
@@ -31,10 +35,16 @@ public class TurkeyPointController : MonoBehaviour {
 			Destroy(gameObject);
 			TurkeyFactory.DecrementTurkeyAmount();
 		}
-		
-		if (_turkey.grounded && Input.GetKeyDown(KeyCode.J))
+
+		jumpTimer += Time.deltaTime;
+		if (_turkey.grounded && jumpTimer>jumpPeriod)
 		{
-			_turkey.TurkeyJump();
+			jumpTimer = 0.0f;
+			System.Random rnd = new System.Random();
+			if (rnd.NextDouble() < 0.6)
+			{
+				_turkey.TurkeyJump();
+			}
 		}
 		
 		if (Input.GetKeyDown(KeyCode.S))
@@ -61,29 +71,21 @@ public class TurkeyPointController : MonoBehaviour {
 		RenderLines();
 		time += Time.deltaTime;
 
-		if (Input.GetKeyDown(KeyCode.A))
-		{
-			_turkey.LateralSlide(false);
-		}
-		if (Input.GetKeyDown(KeyCode.D))
-		{
-			_turkey.LateralSlide(true);
-		}
 		CannonBallCollisionDetection();
 		if (time >= interpolationPeriod) {
 			time = 0.0f;
 			if (_turkey.grounded)
 			{
-				TurkeyLateralMove();
+				TurkeyLateralMove(1);
 			}
 		}
 		MountainCollisionDetection();
 	}
 
-	private void TurkeyLateralMove()
+	private void TurkeyLateralMove(float coeff)
 	{
 		System.Random rnd = new System.Random();
-		_turkey.LateralSlide(rnd.NextDouble() < 0.5);
+		_turkey.LateralSlide(rnd.NextDouble() < 0.5, coeff);
 	}
 
 	private void RenderPoints()

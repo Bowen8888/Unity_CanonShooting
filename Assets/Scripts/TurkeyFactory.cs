@@ -15,7 +15,7 @@ public class TurkeyFactory : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () {
-		if (turkeyAmount < 1)
+		if (turkeyAmount < 5)
 		{
 			turkeyAmount++;
 			Instantiate(turkeyPrefab);

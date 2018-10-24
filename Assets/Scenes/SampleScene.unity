@@ -195,7 +195,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &250360383
 GameObject:
@@ -390,57 +390,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1001 &683999292
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4409204542612298, guid: 4ff9ecc4d8adcaa4b837fbd3d999c7e1, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -12.88
-      objectReference: {fileID: 0}
-    - target: {fileID: 4409204542612298, guid: 4ff9ecc4d8adcaa4b837fbd3d999c7e1, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -6.08
-      objectReference: {fileID: 0}
-    - target: {fileID: 4409204542612298, guid: 4ff9ecc4d8adcaa4b837fbd3d999c7e1, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -0.001
-      objectReference: {fileID: 0}
-    - target: {fileID: 4409204542612298, guid: 4ff9ecc4d8adcaa4b837fbd3d999c7e1, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4409204542612298, guid: 4ff9ecc4d8adcaa4b837fbd3d999c7e1, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4409204542612298, guid: 4ff9ecc4d8adcaa4b837fbd3d999c7e1, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4409204542612298, guid: 4ff9ecc4d8adcaa4b837fbd3d999c7e1, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4409204542612298, guid: 4ff9ecc4d8adcaa4b837fbd3d999c7e1, type: 2}
-      propertyPath: m_RootOrder
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 114135906981630274, guid: 4ff9ecc4d8adcaa4b837fbd3d999c7e1,
-        type: 2}
-      propertyPath: mountainGenerator
-      value: 
-      objectReference: {fileID: 889888725}
-    - target: {fileID: 1511125443579808, guid: 4ff9ecc4d8adcaa4b837fbd3d999c7e1, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 4ff9ecc4d8adcaa4b837fbd3d999c7e1, type: 2}
-  m_IsPrefabAsset: 0
 --- !u!1 &889888725
 GameObject:
   m_ObjectHideFlags: 0

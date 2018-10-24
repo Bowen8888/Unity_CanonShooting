@@ -15,7 +15,7 @@ public class Turkey {
     private float gravity = -0.05f;
     private float jumpForce = 0.4f;
     private float slightJumpForce = 0.1f;
-    private float walkForce = 0.06f;
+    private float walkForce = 0.01f;
     private float windOffset = 0.05f;
     private float ground = -7.9f;
     private float bounce = 0.6f;
@@ -25,7 +25,6 @@ public class Turkey {
     private float currentWind = 0;
     private float previousWind = 0;
     private float defaultWalkingForce = 0;
-    private float previousWalkingForce = 0;
 
     public Turkey(List<Point> points)
     {
@@ -162,7 +161,6 @@ public class Turkey {
     {
         previousWind = currentWind;
         currentWind = windApplied;
-        previousWalkingForce = defaultWalkingForce;
         defaultWalkingForce = wf;
         UpdatePoints();
         ConstrainPoints();
@@ -278,7 +276,7 @@ public class Turkey {
         }
     }
 
-    public void LateralSlide(bool right)
+    public void LateralSlide(bool right, float coeff)
     {
         foreach (var p in Points)
         {
@@ -287,11 +285,11 @@ public class Turkey {
             p.x += vx;
             if (right)
             {
-                p.x += walkForce;
+                p.x += walkForce*coeff;
             }
             else
             {
-                p.x -= walkForce;
+                p.x -= walkForce*coeff;
             }
         }
     }
