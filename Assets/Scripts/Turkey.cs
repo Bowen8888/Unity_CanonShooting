@@ -67,6 +67,7 @@ public class Turkey {
         Sticks.Add(new Stick(Points[4],Points[5]));
         Sticks.Add(new Stick(Points[5],Points[11]));
         Sticks.Add(new Stick(Points[11],Points[13]));
+        Sticks.Add(new Stick(Points[11],Points[2]));
         
         Sticks.Add(new Stick(Points[13],Points[4]));
         Sticks.Add(new Stick(Points[13],Points[5]));
