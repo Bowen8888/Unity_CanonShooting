@@ -298,7 +298,7 @@ public class Turkey {
     {
         for (int i =0; i< Points.Count;i++)
         {
-            if (i % 3 == 0)
+            if (i % 2 == 0)
             {
                 Point p = Points[i];
 //                p.oldX = p.x;
