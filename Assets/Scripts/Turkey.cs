@@ -14,15 +14,18 @@ public class Turkey {
     
     private float gravity = -0.05f;
     private float jumpForce = 0.4f;
-    private float walkForce = 0.1f;
+    private float slightJumpForce = 0.1f;
+    private float walkForce = 0.06f;
     private float windOffset = 0.05f;
     private float ground = -7.9f;
     private float bounce = 0.6f;
     private float leftWall = -18.912f;
     private float mountainLeftBorder = -8.944f;
-    private float mountainSlideForce = 0.03f;
+    private float mountainSlideForce = 0.1f;
     private float currentWind = 0;
     private float previousWind = 0;
+    private float defaultWalkingForce = 0;
+    private float previousWalkingForce = 0;
 
     public Turkey(List<Point> points)
     {
@@ -155,10 +158,12 @@ public class Turkey {
         UpdateBorders();
     }
 
-    public void UpdateTurkey(float windApplied)
+    public void UpdateTurkey(float windApplied, float wf)
     {
         previousWind = currentWind;
         currentWind = windApplied;
+        previousWalkingForce = defaultWalkingForce;
+        defaultWalkingForce = wf;
         UpdatePoints();
         ConstrainPoints();
         UpdateSticks();
@@ -179,6 +184,10 @@ public class Turkey {
             if (i==0 || i==22 || i == 1)
             { 
                 p.y += gravity;
+            }
+            if (i==8)
+            { 
+                p.x += defaultWalkingForce;
             }
         }
     }
@@ -258,6 +267,17 @@ public class Turkey {
         }
     }
 
+    public void SlightJump()
+    {
+        foreach (var p in Points)
+        {
+            float vy = p.y - p.oldY;
+            p.oldY = p.y;
+            p.y += vy;
+            p.y += slightJumpForce;
+        }
+    }
+
     public void LateralSlide(bool right)
     {
         foreach (var p in Points)
@@ -276,15 +296,15 @@ public class Turkey {
         }
     }
     
-    public void MountainBouncing()
+    public void MountainBouncing(float y)
     {
         for (int i =0; i< Points.Count;i++)
         {
             if (i % 3 == 0)
             {
                 Point p = Points[i];
-                p.oldX = p.x;
-                p.x -= mountainSlideForce;
+//                p.oldX = p.x;
+//                p.x -= mountainSlideForce;
                 p.oldY = p.y;
                 p.y += mountainSlideForce;
             }

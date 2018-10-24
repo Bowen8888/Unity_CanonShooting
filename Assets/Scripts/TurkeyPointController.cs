@@ -36,14 +36,25 @@ public class TurkeyPointController : MonoBehaviour {
 		{
 			_turkey.TurkeyJump();
 		}
+		
+		if (Input.GetKeyDown(KeyCode.S))
+		{
+			_turkey.SlightJump();
+		}
+
+		float wf = 0;
+		if (_turkey.maxX > -8.77)
+		{
+			wf = -0.005f;
+		}
 
 		if (_turkey.minY > MountainGenerator.GetMountainTop())
 		{
-			_turkey.UpdateTurkey(Wind.currentWind*0.05f);
+			_turkey.UpdateTurkey(Wind.currentWind*0.05f,wf);
 		}
 		else
 		{
-			_turkey.UpdateTurkey(0);
+			_turkey.UpdateTurkey(0,wf);
 		}
 		
 		RenderPoints();
@@ -63,7 +74,7 @@ public class TurkeyPointController : MonoBehaviour {
 			time = 0.0f;
 			if (_turkey.grounded)
 			{
-				//TurkeyLateralMove();
+				TurkeyLateralMove();
 			}
 		}
 		MountainCollisionDetection();
@@ -116,12 +127,18 @@ public class TurkeyPointController : MonoBehaviour {
 	{
 		Dictionary<int, float> mountainTops = MountainGenerator.GetMountainTops();
 
-		float xPosition = (_turkey.minX + _turkey.maxX) / 2;
-		float yPosition = (_turkey.minY + _turkey.maxY) / 2;
-		int roundedXPosition = (int) Math.Round(xPosition);
-		if (mountainTops.Keys.Contains(roundedXPosition) && yPosition < mountainTops[roundedXPosition])
+		float xminPosition = _turkey.minX;
+		float xmaxPosition = (_turkey.minX + _turkey.maxX) /2;
+		float yPosition = _turkey.minY;
+		int roundedXminPosition = (int) Math.Round(xminPosition);
+		int roundedXmaxPosition = (int) Math.Round(xmaxPosition);
+		if (mountainTops.Keys.Contains(roundedXminPosition) && yPosition < mountainTops[roundedXminPosition])
 		{
-			_turkey.MountainBouncing();
+			_turkey.MountainBouncing(mountainTops[roundedXminPosition]);
+		}
+		else if ((mountainTops.Keys.Contains(roundedXmaxPosition) && yPosition < mountainTops[roundedXmaxPosition]))
+		{
+			_turkey.MountainBouncing(mountainTops[roundedXmaxPosition]);
 		}
 	}
 

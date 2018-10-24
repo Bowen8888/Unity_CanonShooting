@@ -154,7 +154,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cannonBall: {fileID: 1449443519335272, guid: aa30f66b80585884f83537cdca0b208c, type: 2}
-  mountainGenerator: {fileID: 889888725}
   firePower: 35
 --- !u!1 &175844141
 GameObject:
