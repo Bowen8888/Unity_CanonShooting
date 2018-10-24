@@ -131,7 +131,7 @@ public class TurkeyPointController : MonoBehaviour {
 		Dictionary<int, float> mountainTops = MountainGenerator.GetMountainTops();
 
 		float xminPosition = _turkey.minX;
-		float xmaxPosition = (_turkey.minX + _turkey.maxX) /2;
+		float xmaxPosition = (_turkey.GetAvgLateralVelocity() > 0) ? _turkey.maxX : (_turkey.maxX + _turkey.minX)/2;
 		float yPosition = _turkey.minY;
 		int roundedXminPosition = (int) Math.Round(xminPosition);
 		int roundedXmaxPosition = (int) Math.Round(xmaxPosition);

@@ -322,6 +322,19 @@ public class Turkey {
         p.x += ax;
         
     }
+
+    public float GetAvgLateralVelocity()
+    {
+        float totalVx = 0;
+        for(int i=0; i< Points.Count; i++)
+        {
+            Point p = Points[i];
+            float vx = p.x - p.oldX;
+            totalVx += vx;
+        }
+
+        return totalVx / Points.Count;
+    }
 }
 
 public class Point
