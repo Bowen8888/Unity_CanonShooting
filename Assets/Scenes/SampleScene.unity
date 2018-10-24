@@ -156,6 +156,48 @@ MonoBehaviour:
   cannonBall: {fileID: 1449443519335272, guid: aa30f66b80585884f83537cdca0b208c, type: 2}
   mountainGenerator: {fileID: 889888725}
   firePower: 35
+--- !u!1 &175844141
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 175844143}
+  - component: {fileID: 175844142}
+  m_Layer: 0
+  m_Name: TurkeyFactory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &175844142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 175844141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f745e88c285319498965d02fa5b875c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turkeyPrefab: {fileID: 1511125443579808, guid: 4ff9ecc4d8adcaa4b837fbd3d999c7e1,
+    type: 2}
+--- !u!4 &175844143
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 175844141}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.6828895, y: -2.1929636, z: -0.765625}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &250360383
 GameObject:
   m_ObjectHideFlags: 0
@@ -393,6 +435,10 @@ Prefab:
       propertyPath: mountainGenerator
       value: 
       objectReference: {fileID: 889888725}
+    - target: {fileID: 1511125443579808, guid: 4ff9ecc4d8adcaa4b837fbd3d999c7e1, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ff9ecc4d8adcaa4b837fbd3d999c7e1, type: 2}
   m_IsPrefabAsset: 0

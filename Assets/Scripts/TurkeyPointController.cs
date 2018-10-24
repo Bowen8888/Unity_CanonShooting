@@ -27,6 +27,12 @@ public class TurkeyPointController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (_turkey.minX > 20)
+		{
+			Destroy(gameObject);
+			TurkeyFactory.DecrementTurkeyAmount();
+		}
+		
 		if (_turkey.grounded && Input.GetKeyDown(KeyCode.J))
 		{
 			_turkey.TurkeyJump();
