@@ -31,7 +31,16 @@ public class TurkeyPointController : MonoBehaviour {
 		{
 			_turkey.TurkeyJump();
 		}
-		_turkey.UpdateTurkey();
+
+		if (_turkey.minY > MountainGenerator.GetMountainTop())
+		{
+			_turkey.UpdateTurkey(Wind.currentWind*0.05f);
+		}
+		else
+		{
+			_turkey.UpdateTurkey(0);
+		}
+		
 		RenderPoints();
 		RenderLines();
 		time += Time.deltaTime;
@@ -49,18 +58,18 @@ public class TurkeyPointController : MonoBehaviour {
 			time = 0.0f;
 			if (_turkey.grounded)
 			{
-				TurkeyLateralMove();
+				//TurkeyLateralMove();
 			}
 		}
 
-		if (_turkey.minY > MountainGenerator.GetMountainTop())
-		{
-			int wind = Wind.currentWind;
-			if (wind != 0)
-			{
-				_turkey.WindBlow(wind>0);
-			}
-		}
+//		if (_turkey.minY > MountainGenerator.GetMountainTop())
+//		{
+//			int wind = Wind.currentWind;
+//			if (wind != 0)
+//			{
+//				_turkey.WindBlow(wind>0);
+//			}
+//		}
 		MountainCollisionDetection();
 	}
 

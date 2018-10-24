@@ -21,6 +21,8 @@ public class Turkey {
     private float leftWall = -18.912f;
     private float mountainLeftBorder = -8.944f;
     private float mountainSlideForce = 0.03f;
+    private float currentWind = 0;
+    private float previousWind = 0;
 
     public Turkey(List<Point> points)
     {
@@ -152,8 +154,10 @@ public class Turkey {
         UpdateBorders();
     }
 
-    public void UpdateTurkey()
+    public void UpdateTurkey(float windApplied)
     {
+        previousWind = currentWind;
+        currentWind = windApplied;
         UpdatePoints();
         ConstrainPoints();
         UpdateSticks();
@@ -169,7 +173,7 @@ public class Turkey {
             float vy = p.y - p.oldY;
             p.oldX = p.x;
             p.oldY = p.y;
-            p.x += vx;
+            p.x += vx-previousWind+currentWind;
             p.y += vy;
             if (i==0 || i==22 || i == 1)
             { 
@@ -284,17 +288,17 @@ public class Turkey {
         }
     }
 
-    public void WindBlow(bool right)
-    {
-//        foreach (var p in Points)
-//        {
-//            p.oldX = p.x;
-//            p.x += (right) ? windOffset : -windOffset;
-//        }
-        Point p = Points[17];
-        p.oldX = p.x;
-        p.x += (right) ? windOffset : -windOffset;
-    }
+//    public void WindBlow(bool right)
+//    {
+////        foreach (var p in Points)
+////        {
+////            p.oldX = p.x;
+////            p.x += (right) ? windOffset : -windOffset;
+////        }
+//        Point p = Points[17];
+//        p.oldX = p.x;
+//        p.x += (right) ? windOffset : -windOffset;
+//    }
     
     public void MountainBouncing()
     {
